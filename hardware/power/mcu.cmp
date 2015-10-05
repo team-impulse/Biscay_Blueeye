@@ -1,0 +1,136 @@
+Cmp-Mod V01 Created by Cvpcb (2015-01-16 BZR 5376)-product   date = 21/07/2015 18:25:17
+
+BeginCmp
+TimeStamp = /557EA970;
+Reference = C1;
+ValeurCmp = 1u;
+IdModule  = Capacitors_SMD:C_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /557DD239;
+Reference = C2;
+ValeurCmp = 10u;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /557EAAB0;
+Reference = C11;
+ValeurCmp = 4.7u;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /557DD1A3;
+Reference = C12;
+ValeurCmp = 22u;
+IdModule  = Capacitors_SMD:C_1210;
+EndCmp
+
+BeginCmp
+TimeStamp = /557B21D7;
+Reference = D1;
+ValeurCmp = >2A;
+IdModule  = Diodes_SMD:Diode-SMA_Standard;
+EndCmp
+
+BeginCmp
+TimeStamp = /557F0EB0;
+Reference = D3;
+ValeurCmp = GREEN;
+IdModule  = LEDs:LED-0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /557B205A;
+Reference = F1;
+ValeurCmp = 2A poly;
+IdModule  = Fuse_Holders_and_Fuses:Fuse_SMD1206_Reflow;
+EndCmp
+
+BeginCmp
+TimeStamp = /557DCD8F;
+Reference = L2;
+ValeurCmp = VLF252015MT-2R2M;
+IdModule  = Inductors_NEOSID:Neosid_Inductor_SM-NE29_SMD1008;
+EndCmp
+
+BeginCmp
+TimeStamp = /557B1F3C;
+Reference = P1;
+ValeurCmp = 6V PWR;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x02;
+EndCmp
+
+BeginCmp
+TimeStamp = /55AE0A5E;
+Reference = P2;
+ValeurCmp = FPGA;
+IdModule  = Pin_Headers:Pin_Header_Straight_2x12;
+EndCmp
+
+BeginCmp
+TimeStamp = /557F0E9C;
+Reference = P3;
+ValeurCmp = FPGA;
+IdModule  = Pin_Headers:Pin_Header_Straight_2x12;
+EndCmp
+
+BeginCmp
+TimeStamp = /55AE8E0C;
+Reference = P4;
+ValeurCmp = MPU9150;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x08;
+EndCmp
+
+BeginCmp
+TimeStamp = /557DCF5E;
+Reference = R7;
+ValeurCmp = 715k;
+IdModule  = Resistors_SMD:R_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /557DCFC0;
+Reference = R8;
+ValeurCmp = 180k;
+IdModule  = Resistors_SMD:R_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /557F2E6F;
+Reference = R9;
+ValeurCmp = 10k;
+IdModule  = Resistors_SMD:R_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /557F27C1;
+Reference = R14;
+ValeurCmp = 10k;
+IdModule  = Resistors_SMD:R_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /557F16E7;
+Reference = R15;
+ValeurCmp = 330;
+IdModule  = Resistors_SMD:R_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /557EA6BB;
+Reference = U1;
+ValeurCmp = LK115D50;
+IdModule  = SOIC_Packages:SOIC-8_3.9x4.9mm_Pitch1.27mm;
+EndCmp
+
+BeginCmp
+TimeStamp = /557DCD0E;
+Reference = U2;
+ValeurCmp = TPS62160;
+IdModule  = SSOP_Packages:MSOP-8_3x3mm_Pitch0.65mm;
+EndCmp
+
+EndListe
