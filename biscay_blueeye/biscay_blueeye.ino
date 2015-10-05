@@ -8,6 +8,22 @@
 
 #include <SPI.h>
 
+//interface pins
+#define fpga_sck 2
+#define fpga_cs0 3
+#define fpga_miso 5
+#define fpga_captd 7
+#define fpga_clr 14
+#define fpga_cs1 16
+#define dac_mosi 17
+#define dac_sclk 20
+#define dac_sync 21
+#define reg_en 22
+#define vb_mon A14
+#define temp_sense A11
+#define accel_interrupt 1
+
+
 #include <RFM98W_library.h>//radio
 RFMLib radio =RFMLib(10,8,255,255);
 #define sdnss 15
