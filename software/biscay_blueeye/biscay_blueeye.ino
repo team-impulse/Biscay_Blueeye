@@ -63,6 +63,8 @@ void write_dac(uint32_t data) {
 void set_dac_channel_voltage(uint8_t channel, double voltage) {
  uint16_t rawval = 4096 * (voltage / vref);
  if(rawval >= 4096) rawval = 4095;
+ Serial.print("rawval === ");
+ Serial.println(rawval);
  write_dac((0x01 << 20UL) | ((channel & 0x03) << 17UL) | (rawval << 4UL));
 }
 
@@ -109,8 +111,9 @@ long lastT = 0;
 void setup(){
          pinMode(13,OUTPUT);
          digitalWrite(13,LOW);
+         delay(1000);
   Serial.begin(38400);//serial for debugging
-//  while(!Serial.available());
+  //while(!Serial.available());
 //  Serial.read();
   Serial1.begin(9600);//GPS serial...eventually
   Wire.begin();
@@ -168,9 +171,11 @@ Serial.println("config2");
    Serial.print(vmid-thresh);
    Serial.println("V");
    set_dac_channel_voltage(1, vmid-thresh);
+   set_dac_channel_voltage(0, vbias / vbias_scale);
+
 Serial.println("config4");
      Serial.println("Please wait for Vbias to stabilise.");
-  delay(20000);
+  delay(2000);
     double biasVal = read_vbias();
       Serial.print("Vbias=");
       Serial.println(biasVal);
@@ -247,9 +252,9 @@ void loop(){
         delayMicroseconds(10);
         digitalWrite(fpga_clr, LOW);
         digitalWrite(13,HIGH);
-        delay(10);
+        delay(200);
         digitalWrite(13,LOW);
-        delay(10);        
+        delay(200);        
       }
       
 
