@@ -4,7 +4,7 @@
 
 #include <sensor_library.h>
 
-#include <SD.h>
+
 
 #include <SPI.h>
 
@@ -26,15 +26,15 @@
 
 #include <RFM98W_library.h>//radio
 RFMLib radio =RFMLib(10,8,255,255);
-#define sdnss 15
+#define nss 10
 
 //Sensor
 SensLib sns;
 TinyGPSPlus gps;
 
 //SD card structures
-File logfile;
-String logname = "";
+//File logfile;
+//String logname = "";
 
 //constants 
 const double vref = 2.5; 
@@ -106,14 +106,16 @@ long count = 0;
 long lastT = 0;
 
 
-
+unsigned long tx_timer;
 
 void setup(){
-         pinMode(13,OUTPUT);
-         digitalWrite(13,LOW);
+  pinMode(8,INPUT);
+  pinMode(13,OUTPUT);
+  pinMode(10,OUTPUT);
+  digitalWrite(13,LOW);
          delay(1000);
   Serial.begin(38400);//serial for debugging
-  //while(!Serial.available());
+  while(!Serial.available());
 //  Serial.read();
   Serial1.begin(9600);//GPS serial...eventually
   Wire.begin();
@@ -125,8 +127,8 @@ void setup(){
   Serial.println("config1");
   //set up SD card
 //  pinMode(sdnss,OUTPUT);
-  pinMode(10,OUTPUT);
-  digitalWrite(10,HIGH);
+//  pinMode(10,OUTPUT);
+ // digitalWrite(10,HIGH);
 //  digitalWrite(sdnss,HIGH);
  /* if(!SD.begin(sdnss)){
    Serial.println("Initialisation failed.");
@@ -134,7 +136,6 @@ void setup(){
   else Serial.println("Initialisation successful.");
   genNewLogFileName();//set up a new log file name in a global var. Sorry, World.
   */
-radio.rfm_done = true;
 Serial.println("config2");
    pinMode(reg_en, OUTPUT);
    digitalWrite(reg_en, LOW);
@@ -156,7 +157,7 @@ Serial.println("config2");
    Serial.println("config3");
   
    
-      pinMode(fpga_captd, INPUT);
+   pinMode(fpga_captd, INPUT);
    Serial.println("Turning on supplies");
    digitalWrite(reg_en, HIGH);
    Serial.print("Setting bias to ");
@@ -180,16 +181,14 @@ Serial.println("config4");
       Serial.print("Vbias=");
       Serial.println(biasVal);
        digitalWrite(fpga_clr, LOW);
-       radio.rfm_done = true;
+    //   radio.rfm_done = true;
        
        //stuff
 Serial.println("config5");
         pinMode(13,OUTPUT);
-       digitalWrite(13,HIGH);
-       delay(1000);
-       digitalWrite(13,LOW);
-}
-
+       tx_timer = millis();
+     }
+uint16_t rejected=0;
 void loop(){
   /*
   while(!radio.rfm_done);
@@ -221,11 +220,18 @@ void loop(){
 /*    while(!radio.rfm_done);
   radio.endTX();
   send_data(true);*/
-
-        if(digitalRead(fpga_captd)==1) {
+   /* if(radio.rfm_done){
+      Serial.println("Ending");   
+      radio.endTX();
+    }
+    if(((millis()-tx_timer) >=1000) && (radio.rfm_status==0)){
+     send_data(true);
+     tx_timer = millis();
+    }
+      if(digitalRead(fpga_captd)==1) {
           Serial.println("EVENT!!!");
-        //uint16_t data[17];
-        //read_fpga(fpga_cs0, data, 17);
+        uint16_t data[17];
+        read_fpga(fpga_cs0, data, 17);
 
           /*Serial.print("===");
           for(int i = 0; i < 17; i++) {
@@ -236,28 +242,58 @@ void loop(){
           
           //Serial.println();
           //rf print reverse_bits(data[16])
-          /*
-          uint16_t rfprint = reverse_bits(data[16]);
-          RFMLib::Packet p;
-          p.data[0] = (rfprint>>8)&0xFF;
-          p.data[1] = (rfprint)&0xFF;
-          p.len = 2;
-          radio.beginTX(p);
-        attachInterrupt(8,RFMISR, RISING);*/
-        
-          count++;
+/*          if(radio.rfm_status==0){//if radio idle
+            uint16_t rfprint = reverse_bits(data[16]);
+            RFMLib::Packet p;
+            p.data[0] = (rfprint>>8)&0xFF;
+            p.data[1] = (rfprint)&0xFF;
+            p.data[2] = (rejected>>8)&0xFF;
+            p.data[3] = rejected & 0xFF;
+            p.len = 4;
+            rejected = 0;
+            radio.beginTX(p);
+            
+          digitalWrite(13,LOW);
+          delay(200);
+                    digitalWrite(13,HIGH);
+          delay(200);
+          digitalWrite(13,LOW);
+            attachInterrupt(8,RFMISR, RISING);
+          }
+          else rejected++;
+          */
+       /*   count++;
         
 
         digitalWrite(fpga_clr, HIGH);
         delayMicroseconds(10);
         digitalWrite(fpga_clr, LOW);
-        digitalWrite(13,HIGH);
-        delay(200);
-        digitalWrite(13,LOW);
-        delay(200);        
       }
-      
+      Serial.println(rRFM(0x12));
+      delay(50);*/
+       if(radio.rfm_status ==0){
+    RFMLib::Packet p;
+    p.data[0]=255;
+    p.data[1]=243;
+    p.len = 2;
+    radio.beginTX(p); 
+    Serial.println("begin");
+    attachInterrupt(8,RFMISR,RISING);
+  }
 
+  if(radio.rfm_done){
+        Serial.println("Ending");   
+    radio.endTX();
+  }
+
+}
+
+byte rRFM(byte ad){//single byte read
+   digitalWrite(nss,LOW);
+   SPI.transfer(ad & B01111111);//wrn bit low
+   byte val = SPI.transfer(0);//read, but we still have to spec a value?
+   digitalWrite(nss,HIGH);
+   return val;
 }
 
 void send_data(boolean success){
@@ -279,15 +315,26 @@ void send_data(boolean success){
   p.data[12] = (success)? 1 : 0;
   p.len = 13;
 
+ // digitalWrite(13,HIGH);
+//  delay(1000);
+//  digitalWrite(13,LOW);
+
   radio.beginTX(p);
+        Serial.println("begin");
+
   attachInterrupt(8,RFMISR, RISING);
 }
 
 
 void RFMISR(){
+    Serial.println("interrupt");
    radio.rfm_done = true; 
+ //  digitalWrite(13,HIGH);
+  //// delay(5000);
+ //  digitalWrite(13,LOW);
 }
-
+/*
+String logname;
 void genNewLogFileName(){
    int16_t logcnt = 0;
   while(true){
@@ -308,7 +355,7 @@ void genNewLogFileName(){
    logcnt++;
   }//generate a file name that doesn't overwrite anything
    
-}
+}*/
 
 
 uint16_t reverse_bits(uint16_t in) {
