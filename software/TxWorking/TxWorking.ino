@@ -27,6 +27,7 @@ SensLib sns;
 TinyGPSPlus gps;
 
 String hablog;
+
 String eventlog;
 #define sdnss 15
 
@@ -181,13 +182,13 @@ void loop(){
   if((millis()-timer)>transmit_period){
     send_data();
     
-    //don't let's be fussy for now--sd
+    //sd logging
     char lognamechar[hablog.length()];
     hablog.toCharArray(lognamechar, hablog.length());
     File hablogf = SD.open( lognamechar,FILE_WRITE);
     // GPS time, millis time, lat,long, hdop, pressure, temperature, total event count, thresholded event count
     printsdline(hablogf,gps.time.value())
-     printsdline(hablogf,millis())
+    printsdline(hablogf,millis())
     printsdline(hablogf,gps.location.lat())
     printsdline(hablogf,gps.location.lng())
     printsdline(hablogf,gps.hdop.value())
@@ -195,7 +196,6 @@ void loop(){
     printsdline(hablogf,sns.internal_temperature)
     printsdline(hablogf,counts[0])
     hablogf.println(counts[1]);
-    
     hablogf.close();    
     
     timer = millis();
@@ -209,6 +209,7 @@ void loop(){
     if(reverse_bits(data[16])>=threshold)
       counts[1]++;
     counts[0]++;
+    log_event(data);
     /*Serial.print("===");
      for(int i = 0; i < 17; i++) {
      Serial.print(reverse_bits(data[i]));
@@ -327,9 +328,28 @@ String genNewLogFileName(String base,String header){
   }//generate a file name that doesn't overwrite anything
   char lognamechar[ln.length()];
   ln.toCharArray(lognamechar, ln.length());
-  File hablogf = SD.open( lognamechar,FILE_WRITE);
-  hablogf.println(header);
-  hablogf.close();
+  File f = SD.open( lognamechar,FILE_WRITE);
+  f.println(header);
+  f.close();
   return ln;
 }
 
+void log_event(uint16_t edata[]){
+  //GPS time, millis, lat, long, hdop, pressure, temp, data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7],data[8],data[9],data[10],data[11],data[12],data[13],data[14],data[15],data[16]
+   char lognamechar[eventlog.length()];
+    eventlog.toCharArray(lognamechar, eventlog.length());
+    File elog = SD.open( lognamechar,FILE_WRITE);
+    // GPS time, millis time, lat,long, hdop, pressure, temperature, total event count, thresholded event count
+    printsdline(elog,gps.time.value())
+    printsdline(elog,millis())
+    printsdline(elog,gps.location.lat())
+    printsdline(elog,gps.location.lng())
+    printsdline(elog,gps.hdop.value())
+    printsdline(elog,sns.pressure)
+    printsdline(elog,sns.internal_temperature)
+    for(int i =0;i<16;i++){
+      printsdline(elog,reverse_bits(edata[i]))
+    }
+    elog.println(reverse_bits(edata[16]));
+    elog.close();    
+}
