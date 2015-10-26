@@ -1,9 +1,7 @@
+#include <SD.h>
 #include <Wire.h>
-
 #include <TinyGPS++.h>
-
 #include <sensor_library.h>
-
 #include <SPI.h>
 
 //interface pins
@@ -24,9 +22,13 @@
 #include <RFM98W_library.h>
 RFMLib radio =RFMLib(10,8,255,255);
 #define nss 10
-
+#define printsdline(a,b) a.print(b);a.print(",");
 SensLib sns;
 TinyGPSPlus gps;
+
+String hablog;
+String eventlog;
+#define sdnss 15
 
 
 //constants 
@@ -104,11 +106,20 @@ uint16_t counts[2];//total counts, counts above threshold
 //============================================================
 void setup(){
   pinMode(13,OUTPUT);
+  pinMode(sdnss,OUTPUT);
+  pinMode(10,OUTPUT);
+  digitalWrite(10,HIGH);
   Serial1.begin(9600);//GPS serial...eventually
   Wire.begin();
+    SPI.begin();
   sns.initialise();//initialise sensors
+  if(!SD.begin(sdnss)){
+   Serial.println("SD initialisation failed"); 
+  }
+  else Serial.println("SD card initialisation success!");
+  hablog = genNewLogFileName("HAB_","GPS time, millis time, lat,long, hdop, pressure, temperature, total event count, thresholded event count");
+  eventlog = genNewLogFileName("EV_","test");
 
-  SPI.begin();
   Serial.begin(38400);
   byte my_config[5] = {
     0x64,0x74,0xFA,0xAC,0xCD  };//radio settings
@@ -169,6 +180,24 @@ void loop(){
   while(Serial1.available())gps.encode(Serial1.read());//feed tinyGPS++ object  
   if((millis()-timer)>transmit_period){
     send_data();
+    
+    //don't let's be fussy for now--sd
+    char lognamechar[hablog.length()];
+    hablog.toCharArray(lognamechar, hablog.length());
+    File hablogf = SD.open( lognamechar,FILE_WRITE);
+    // GPS time, millis time, lat,long, hdop, pressure, temperature, total event count, thresholded event count
+    printsdline(hablogf,gps.time.value())
+     printsdline(hablogf,millis())
+    printsdline(hablogf,gps.location.lat())
+    printsdline(hablogf,gps.location.lng())
+    printsdline(hablogf,gps.hdop.value())
+    printsdline(hablogf,sns.pressure)
+    printsdline(hablogf,sns.internal_temperature)
+    printsdline(hablogf,counts[0])
+    hablogf.println(counts[1]);
+    
+    hablogf.close();    
+    
     timer = millis();
     counts[0]=0;
     counts[1]=0;
@@ -272,5 +301,35 @@ uint16_t reverse_bits(uint16_t in) {
     }
   } 
   return result;
+}
+
+String genNewLogFileName(String base,String header){
+  File lf;
+  String ln;
+   int16_t logcnt = 0;
+   
+  while(true){
+    ln = base;
+   ln = ln + "LOG";
+   ln = ln + logcnt;
+   ln = ln + ".csv";
+   char lognamechar[ln.length()];
+   ln.toCharArray(lognamechar, ln.length());
+   lf = SD.open( lognamechar);
+   if(!lf){
+     Serial.println("Generated logfile name:");
+     Serial.println(ln);
+     break;
+   }
+   lf.close();
+   
+   logcnt++;
+  }//generate a file name that doesn't overwrite anything
+  char lognamechar[ln.length()];
+  ln.toCharArray(lognamechar, ln.length());
+  File hablogf = SD.open( lognamechar,FILE_WRITE);
+  hablogf.println(header);
+  hablogf.close();
+  return ln;
 }
 
