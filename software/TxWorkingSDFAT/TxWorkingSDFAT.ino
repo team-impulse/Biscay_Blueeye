@@ -51,6 +51,8 @@ const double vbias = -31;
 const double vmid = 1.65;
 const double thresh = 0.025;
 const int interval = 5000;
+boolean sd_initialised = false;
+
 
 void write_dac(uint32_t data) {
   digitalWrite(dac_sclk, LOW);
@@ -125,7 +127,6 @@ void setup(){
   pinMode(10,OUTPUT);
   digitalWrite(10,HIGH);
   Serial1.begin(9600);//GPS serial...eventually
-  delay(500);
   setGPS_DynamicModel6();
   Wire.begin();
     SPI.begin();
@@ -143,6 +144,9 @@ void setup(){
   if (!sd.begin(sdnss, SPI_HALF_SPEED)) {
     //sd.initErrorHalt();
     Serial.println("SD initialisation failed"); 
+  }
+  else{
+   sd_initialised = true; 
   }
 
 
@@ -203,7 +207,7 @@ void setup(){
   Serial.println("config5");
   timer = millis();
 }
-
+uint32_t lastchars = 0;
 void loop(){
   
   while(Serial1.available())gps.encode(Serial1.read());//feed tinyGPS++ object  
@@ -228,6 +232,7 @@ void loop(){
     timer = millis();
     counts[0]=0;
     counts[1]=0;
+    lastchars = gps.charsProcessed();
   }
   if(digitalRead(fpga_captd)==1) {
     Serial.println("EVENT!!!");
@@ -308,7 +313,17 @@ void send_data(){
   p.data[15] = (posn>>8)&0xFF;
   p.data[16] = posn &0xFF;
   
-  p.len = 17;
+  byte sys_status=0;
+  if(sd_initialised) sys_status = sys_status | (1);
+  if(gps.hdop.value()<400) sys_status = sys_status | (1<<1);
+  if(gps.satellites.value()>=3) sys_status = sys_status | (1<<2);
+  if(gps.charsProcessed() > lastchars)sys_status = sys_status | (1<<3);
+  p.data[17] = sys_status;
+  
+  
+  
+  
+  p.len = 18;
   radio.beginTX(p);
   Serial.println("begin");
 
@@ -389,11 +404,22 @@ void setGPS_DynamicModel6()
  0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x16, 0xDC };
  byte x=0;
- while(!gps_set_sucess && x<201)
+ while(!gps_set_sucess && x<5)
  {
  sendUBX(setdm6, sizeof(setdm6)/sizeof(uint8_t));
  gps_set_sucess=getUBX_ACK(setdm6);
- x++;
+ /*
+------------------------------------------------------------------------------------------------------------------------
+ 
+ UNCOMMENT THE BELOW LINE BEFORE FLIGHT
+ 
+ UNCOMMENT THE BELOW LINE BEFORE FLIGHT
+
+  UNCOMMENT THE BELOW LINE BEFORE FLIGHT
+------------------------------------------------------------------------------------------------------------------------ 
+
+ */
+ //x++;
  }
 }
 void sendUBX(uint8_t *MSG, uint8_t len) {
@@ -437,9 +463,9 @@ while (1) {
  }
  
 // Timeout if no valid response in 3 seconds
- if (millis() - startTime > 3000) {
+/* if (millis() - startTime > 3000) {
  return false;
- }
+ }*/
  
 // Make sure data is available to read
  if (Serial1.available()) {

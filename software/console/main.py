@@ -14,7 +14,8 @@ def nameLogFile(base):
   while os.path.isfile(file_name):
     file_counter += 1
     file_name =  "data/"+base + str(file_counter) + ".CSV" ##make sure we don't overwrite anything.
-
+  fx = open(file_name,'w')
+  fx.close()
   return file_name
 
 def open_serial_port(port_name):#tries to open a specified serial port
@@ -89,17 +90,14 @@ if not open_serial_port(const_default_serial_port):
     sys.exit(0)
 logfile_names = [nameLogFile("GND_RAW_"),nameLogFile("GND_PROCESSSED_")]
 #to clear serial console os.system('cls' if os.name == 'nt' else 'clear')
-QNH = input('Please input QNH in hPa')
-latest = [0,  0,  0.0,     0.0,0,      0.0, 0.0, 0,                0]
-#rssi,snr,pressure,calc_alt(m),temp,lat,long,total event count,thresholded event count
 
-last_status = [False,False,False,False]#GPS valid, GPS satellites >3, GPS HDOP<40m,SD init Successfully
+
 
 #output required: rssi(dec),snr(dec),pressure x4 (hex),temp x1(hex),count[0]x2 (hex),count[1]x2(hex),positionx8 (hex),status (hex)
 pktcount = 0
 print "Waiting..."
 while True:
     rec = check_serial()
-    if rec!="":#if we've got something
+    if rec!="" && rec[0]=="#":#if we've got something
         pktcount+=1
         processdata(rec)
