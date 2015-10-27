@@ -1,4 +1,12 @@
-#include <SD.h>
+#include <MinimumSerial.h>
+#include <SdFat.h>
+#include <SdFatConfig.h>
+#include <SdFatmainpage.h>
+#include <SdFatUtil.h>
+#include <SdInfo.h>
+#include <SdSpi.h>
+#include <SdSpiCard.h>
+
 #include <Wire.h>
 #include <TinyGPS++.h>
 #include <sensor_library.h>
@@ -23,6 +31,8 @@
 RFMLib radio =RFMLib(10,8,255,255);
 #define nss 10
 #define printsdline(a,b) a.print(b);a.print(",");
+#define printsdline5(a,b) a.print(b,5);a.print(",");
+
 SensLib sns;
 TinyGPSPlus gps;
 
@@ -104,6 +114,9 @@ const long transmit_period = 5000;
 uint64_t timer;
 uint16_t counts[2];//total counts, counts above threshold
 
+SdFat sd;
+
+
 //============================================================
 void setup(){
   pinMode(13,OUTPUT);
@@ -117,20 +130,24 @@ void setup(){
   sns.initialise();//initialise sensors
   
     byte my_config[5] = {
-    0x54,0x74,0xFA,0xAC,0xCD  };//radio settings
+    0x34,0x74,0xFA,0xAC,0xCD  };//radio settings
   radio.configure(my_config);
 
 
-  if(!SD.begin(sdnss)){
+/*  if(!SD.begin(sdnss)){
    Serial.println("SD initialisation failed"); 
-  } else Serial.println("SD card initialisation success!");
+  } else Serial.println("SD card initialisation success!");*/
+  
+  if (!sd.begin(sdnss, SPI_HALF_SPEED)) {
+    //sd.initErrorHalt();
+    Serial.println("SD initialisation failed"); 
+  }
 
 
 
 
-
-/*  hablog = genNewLogFileName("HAB_","GPS time, millis time, lat,long, hdop, pressure, temperature, total event count, thresholded event count");
-  eventlog = genNewLogFileName("EV_","test");*/
+  hablog = genNewLogFileName("HAB_","GPS time, millis time, lat,long, hdop, pressure, temperature, total event count, thresholded event count");
+  eventlog = genNewLogFileName("EV_","test");
 
   Serial.begin(38400);
 
@@ -191,27 +208,27 @@ void loop(){
   if((millis()-timer)>transmit_period){
     send_data();
     //sd logging
-  /*  char lognamechar[hablog.length()];
+    char lognamechar[hablog.length()];
     hablog.toCharArray(lognamechar, hablog.length());
-    File hablogf = SD.open( lognamechar,FILE_WRITE);
+    File hablogf = sd.open( lognamechar,FILE_WRITE);
     // GPS time, millis time, lat,long, hdop, pressure, temperature, total event count, thresholded event count
     printsdline(hablogf,gps.time.value())
     printsdline(hablogf,millis())
-    printsdline(hablogf,gps.location.lat())
-    printsdline(hablogf,gps.location.lng())
+    printsdline5(hablogf,gps.location.lat())
+    printsdline5(hablogf,gps.location.lng())
     printsdline(hablogf,gps.hdop.value())
     printsdline(hablogf,sns.pressure)
     printsdline(hablogf,sns.internal_temperature)
     printsdline(hablogf,counts[0])
     hablogf.println(counts[1]);
-    hablogf.close();    */
+    hablogf.close();    
     
     timer = millis();
     counts[0]=0;
     counts[1]=0;
   }
   if(digitalRead(fpga_captd)==1) {
-   /* Serial.println("EVENT!!!");
+    Serial.println("EVENT!!!");
     uint16_t data[17];
     read_fpga(fpga_cs0, data, 17);
     if(reverse_bits(data[16])>=threshold)
@@ -227,7 +244,7 @@ void loop(){
 
     //Serial.println();
     //rf print reverse_bits(data[16])
-    /*    if(radio.rfm_status==0){//if radio idle
+    /*   if(radio.rfm_status==0){//if radio idle
      uint16_t rfprint = reverse_bits(data[16]);
      RFMLib::Packet p;
      p.data[0] = (rfprint>>8)&0xFF;
@@ -241,7 +258,7 @@ void loop(){
      
      attachInterrupt(8,RFMISR, RISING);
      }
-     else rejected++;*/
+     else rejected++;
 
 
   /*  digitalWrite(13,LOW);
@@ -324,7 +341,7 @@ String genNewLogFileName(String base,String header){
    ln = ln + ".csv";
    char lognamechar[ln.length()];
    ln.toCharArray(lognamechar, ln.length());
-   lf = SD.open( lognamechar);
+   lf = sd.open(lognamechar);
    if(!lf){
      Serial.println("Generated logfile name:");
      Serial.println(ln);
@@ -336,7 +353,7 @@ String genNewLogFileName(String base,String header){
   }//generate a file name that doesn't overwrite anything
   char lognamechar[ln.length()];
   ln.toCharArray(lognamechar, ln.length());
-  File f = SD.open( lognamechar,FILE_WRITE);
+  File f = sd.open( lognamechar,FILE_WRITE);
   f.println(header);
   f.close();
   return ln;
@@ -346,15 +363,9 @@ void log_event(uint16_t edata[]){
   //GPS time, millis, lat, long, hdop, pressure, temp, data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7],data[8],data[9],data[10],data[11],data[12],data[13],data[14],data[15],data[16]
    char lognamechar[eventlog.length()];
     eventlog.toCharArray(lognamechar, eventlog.length());
-    File elog = SD.open( lognamechar,FILE_WRITE);
+    File elog = sd.open( lognamechar,FILE_WRITE);
     // GPS time, millis time, lat,long, hdop, pressure, temperature, total event count, thresholded event count
-    printsdline(elog,gps.time.value())
     printsdline(elog,millis())
-    printsdline(elog,gps.location.lat())
-    printsdline(elog,gps.location.lng())
-    printsdline(elog,gps.hdop.value())
-    printsdline(elog,sns.pressure)
-    printsdline(elog,sns.internal_temperature)
     for(int i =0;i<16;i++){
       printsdline(elog,reverse_bits(edata[i]))
     }
