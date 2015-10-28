@@ -17,7 +17,7 @@ void setup(){
   Serial.println("INIT!");
 
   
-  byte my_config[5] = {0x34,0x74,0xFA,0xAC,0xCD};//radio settings
+  byte my_config[5] = {0x34,0xC4,0xFA,0xAC,0xCD};//radio settings
   radio.configure(my_config);
   delay(800);
 }

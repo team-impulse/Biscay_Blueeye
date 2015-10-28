@@ -36,7 +36,7 @@ void setup(){
     sd_error = true;
   }
   logFileName = genNewLogFileName("R","millis,RSSI,SNR,p,t,lat,long,count,count_thresh,raw");
-  byte my_config[5] = {0x34,0x74,0xFA,0xAC,0xCD};//radio settings
+  byte my_config[5] = {0x34,0xC4,0xFA,0xAC,0xCD};//radio settings
   radio.configure(my_config);
   delay(800);
 
