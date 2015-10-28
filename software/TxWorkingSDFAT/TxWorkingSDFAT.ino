@@ -408,18 +408,8 @@ void setGPS_DynamicModel6()
  {
  sendUBX(setdm6, sizeof(setdm6)/sizeof(uint8_t));
  gps_set_sucess=getUBX_ACK(setdm6);
- /*
-------------------------------------------------------------------------------------------------------------------------
- 
- UNCOMMENT THE BELOW LINE BEFORE FLIGHT
- 
- UNCOMMENT THE BELOW LINE BEFORE FLIGHT
 
-  UNCOMMENT THE BELOW LINE BEFORE FLIGHT
------------------------------------------------------------------------------------------------------------------------- 
-
- */
- //x++;
+ x++;
  }
 }
 void sendUBX(uint8_t *MSG, uint8_t len) {
@@ -463,9 +453,9 @@ while (1) {
  }
  
 // Timeout if no valid response in 3 seconds
-/* if (millis() - startTime > 3000) {
+ if (millis() - startTime > 3000) {
  return false;
- }*/
+ }
  
 // Make sure data is available to read
  if (Serial1.available()) {

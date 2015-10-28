@@ -40,6 +40,8 @@ def check_serial():
 
 def processdata(received):
     rawlog = open(logfile_names[0],'a')
+    rawlog.write(str(time.time()))
+    rawlog.write(",")
     rawlog.write(received)
     rawlog.write("\n")
     rawlog.close()
