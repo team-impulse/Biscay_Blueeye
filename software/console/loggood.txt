@@ -1,0 +1,1384 @@
+
+Starting
+
+^CTraceback (most recent call last):
+  File "simple.py", line 64, in <module>
+    time.sleep(0.1)
+KeyboardInterrupt
+Williams-MacBook-Pro:console william$ python simple.py
+('opening', '/dev/tty.usbserial-A6009CSG')
+Successfully opened serial port.
+INIT!
+
+Starting
+
+^C^CTraceback (most recent call last):
+  File "simple.py", line 64, in <module>
+    time.sleep(0.1)
+KeyboardInterrupt
+Williams-MacBook-Pro:console william$ python simple.py
+('opening', '/dev/tty.usbserial-A6009CSG')
+Bad serial port name. Try again.
+[Errno 16] Resource busy: '/dev/tty.usbserial-A6009CSG'
+bad serial port.
+Williams-MacBook-Pro:console william$ python simple.py
+('opening', '/dev/tty.usbserial-A6009CSG')
+Successfully opened serial port.
+INIT!
+
+Starting
+
+^CTraceback (most recent call last):
+  File "simple.py", line 64, in <module>
+    time.sleep(0.1)
+KeyboardInterrupt
+Williams-MacBook-Pro:console william$ python simple.py
+('opening', '/dev/tty.usbserial-A6009CSG')
+Bad serial port name. Try again.
+[Errno 2] No such file or directory: '/dev/tty.usbserial-A6009CSG'
+bad serial port.
+Williams-MacBook-Pro:console william$ python simple.py
+('opening', '/dev/tty.usbserial-A6009CSG')
+Bad serial port name. Try again.
+[Errno 2] No such file or directory: '/dev/tty.usbserial-A6009CSG'
+bad serial port.
+Williams-MacBook-Pro:console william$ python simple.py
+('opening', '/dev/tty.usbserial-A6009CSG')
+Bad serial port name. Try again.
+[Errno 2] No such file or directory: '/dev/tty.usbserial-A6009CSG'
+bad serial port.
+Williams-MacBook-Pro:console william$ python simple.py
+('opening', '/dev/tty.usbserial-A6009CSG')
+Bad serial port name. Try again.
+[Errno 2] No such file or directory: '/dev/tty.usbserial-A6009CSG'
+bad serial port.
+Williams-MacBook-Pro:console william$ python simple.py
+('opening', '/dev/tty.usbserial-A6009CSG')
+Bad serial port name. Try again.
+[Errno 2] No such file or directory: '/dev/tty.usbserial-A6009CSG'
+bad serial port.
+Williams-MacBook-Pro:console william$ python simple.py
+('opening', '/dev/tty.usbserial-A6009B8C')
+Successfully opened serial port.
+
+INIT!
+
+Generated logfile name:
+
+RLOG30.csv
+
+Starting
+
+
+interrupt
+
+Ending
+
+CRC FAIL!!!
+
+RSSI:-99
+
+SNR:-15
+
+Pressure:935890842hPa
+
+Temperature:-94degC
+
+GPS lat/long: 1100.8985, -206380.0322
+
+Total Count:37473
+
+Thresholded Count:6146
+
+Status: SD FAIL, HDOP FAIL, SAT FAIL, GPS FAIL
+
+#-99,-15,37,C8,8F,9A,22,92,61,18,2,0,A0,5A,B9,7B,3,18,2,0
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+CRC FAIL!!!
+
+RSSI:-100
+
+SNR:-16
+
+Pressure:935890842hPa
+
+Temperature:-94degC
+
+GPS lat/long: 1100.8985, -206380.0322
+
+Total Count:37473
+
+Thresholded Count:6146
+
+Status: SD FAIL, HDOP FAIL, SAT FAIL, GPS FAIL
+
+#-100,-16,37,C8,8F,9A,22,92,61,18,2,0,A0,5A,B9,7B,3,18,2,0
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+CRC FAIL!!!
+
+RSSI:-100
+
+SNR:-16
+
+Pressure:935890842hPa
+
+Temperature:-94degC
+
+GPS lat/long: 1100.8985, -206380.0322
+
+Total Count:37473
+
+Thresholded Count:6146
+
+Status: SD FAIL, HDOP FAIL, SAT FAIL, GPS FAIL
+
+#-100,-16,37,C8,8F,9A,22,92,61,18,2,0,A0,5A,B9,7B,3,18,2,0
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+CRC FAIL!!!
+
+RSSI:-98
+
+SNR:-16
+
+Pressure:935890842hPa
+
+Temperature:-94degC
+
+GPS lat/long: 1100.8985, -206380.0322
+
+Total Count:37473
+
+Thresholded Count:6146
+
+Status: SD FAIL, HDOP FAIL, SAT FAIL, GPS FAIL
+
+#-98,-16,37,C8,8F,9A,22,92,61,18,2,0,A0,5A,B9,7B,3,18,2,0
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-99
+
+SNR:-12
+
+Pressure:66625hPa
+
+Temperature:20degC
+
+GPS lat/long: 52.7634, -2.9809
+
+Total Count:5
+
+Thresholded Count:4
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-99,-12,0,1,4,41,94,0,5,0,4,0,0,6B,F2,0,0,74,71,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-99
+
+SNR:-8
+
+Pressure:66420hPa
+
+Temperature:20degC
+
+GPS lat/long: 52.7640, -2.9798
+
+Total Count:5
+
+Thresholded Count:5
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-99,-8,0,1,3,74,94,0,5,0,5,0,0,6B,F8,0,0,74,66,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+int
+errupt
+
+Ending
+
+CRC FAIL!!!
+
+RSSI:-98
+
+SNR:-15
+
+Pressure:66420hPa
+
+Temperature:20degC
+
+GPS lat/long: 52.7640, -2.9798
+
+Total Count:5
+
+Thresholded Count:5
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-98,-15,0,1,3,74,94,0,5,0,5,0,0,6B,F8,0,0,74,66,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+CRC FAIL!!!
+
+RSSI:-99
+
+SNR:-16
+
+Pressure:66420hPa
+
+Temperature:20degC
+
+GPS lat/long: 52.7640, -2.9798
+
+Total Count:5
+
+Thresholded Count:5
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-99,-16,0,1,3,74,94,0,5,0,5,0,0,6B,F8,0,0,74,66,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-98
+
+SNR:-13
+
+Pressure:64828hPa
+
+Temperature:20degC
+
+GPS lat/long: 52.7694, -2.9732
+
+Total Count:12
+
+Thresholded Count:10
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-98,-13,0,0,FD,3C,94,0,C,0,A,0,0,6C,2E,0,0,74,24,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-98
+
+SNR:-10
+
+Pressure:64338hPa
+
+Temperature:20degC
+
+GPS lat/long: 52.7708, -2.9714
+
+Total Count:11
+
+Thresholded Count:11
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-98,-10,0,0,FB,52,94,0,B,0,B,0,0,6C,3C,0,0,74,12,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-99
+
+SNR:-9
+
+Pressure:62961hPa
+
+Temperature:19degC
+
+GPS lat/long: 52.7748, -2.9669
+
+Total Count:4
+
+Thresholded Count:3
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-99,-9,0,0,F5,F1,93,0,4,0,3,0,0,6C,64,0,0,73,E5,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-99
+
+SNR:-10
+
+Pressure:62538hPa
+
+Temperature:19degC
+
+GPS lat/long: 52.7760, -2.9653
+
+Total Count:11
+
+Thresholded Count:10
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-99,-10,0,0,F4,4A,93,0,B,0,A,0,0,6C,70,0,0,73,D5,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-97
+
+SNR:-14
+
+Pressure:62332hPa
+
+Temperature:19degC
+
+GPS lat/long: 52.7766, -2.9646
+
+Total Count:9
+
+Thresholded Count:8
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-97,-14,0,0,F3,7C,93,0,9,0,8,0,0,6C,76,0,0,73,CE,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-100
+
+SNR:-14
+
+Pressure:62108hPa
+
+Temperature:19degC
+
+GPS lat/long: 52.7772, -2.9640
+
+Total Count:10
+
+Thresholded Count:8
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-100,-14,0,0,F2,9C,93,0,A,0,8,0,0,6C,7C,0,0,73,C8,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-98
+
+SNR:-12
+
+Pressure:61244hPa
+
+Temperature:19degC
+
+GPS lat/long: 52.7795, -2.9616
+
+Total Count:16
+
+Thresholded Count:15
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-98,-12,0,0,EF,3C,93,0,10,0,F,0,0,6C,93,0,0,73,B0,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-98
+
+SNR:-10
+
+Pressure:61002hPa
+
+Temperature:19degC
+
+GPS lat/long: 52.7800, -2.9609
+
+Total Count:10
+
+Thresholded Count:8
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-98,-10,0,0,EE,4A,93,0,A,0,8,0,0,6C,98,0,0,73,A9,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+CRC FAIL!!!
+
+RSSI:-100
+
+SNR:-16
+
+Pressure:61002hPa
+
+Temperature:19degC
+
+GPS lat/long: 52.7800, -2.9609
+
+Total Count:10
+
+Thresholded Count:8
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-100,-16,0,0,EE,4A,93,0,A,0,8,0,0,6C,98,0,0,73,A9,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-99
+
+SNR:-14
+
+Pressure:60288hPa
+
+Temperature:19degC
+
+GPS lat/long: 52.7818, -2.9587
+
+Total Count:13
+
+Thresholded Count:13
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-99,-14,0,0,EB,80,93,0,D,0,D,0,0,6C,AA,0,0,73,93,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-98
+
+SNR:-12
+
+Pressure:59900hPa
+
+Temperature:19degC
+
+GPS lat/long: 52.7830, -2.9573
+
+Total Count:6
+
+Thresholded Count:6
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-98,-12,0,0,E9,FC,93,0,6,0,6,0,0,6C,B6,0,0,73,85,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+CRC FAIL!!!
+
+RSSI:-99
+
+SNR:-16
+
+Pressure:59900hPa
+
+Temperature:19degC
+
+GPS lat/long: 52.7830, -2.9573
+
+Total Count:6
+
+Thresholded Count:6
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-99,-16,0,0,E9,FC,93,0,6,0,6,0,0,6C,B6,0,0,73,85,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-99
+
+SNR:-7
+
+Pressure:58930hPa
+
+Temperature:19degC
+
+GPS lat/long: 52.7861, -2.9532
+
+Total Count:14
+
+Thresholded Count:13
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-99,-7,0,0,E6,32,93,0,E,0,D,0,0,6C,D5,0,0,73,5C,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-99
+
+SNR:-10
+
+Pressure:58767hPa
+
+Temperature:19degC
+
+GPS lat/long: 52.7865, -2.9522
+
+Total Count:10
+
+Thresholded Count:9
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-99,-10,0,0,E5,8F,93,0,A,0,9,0,0,6C,D9,0,0,73,52,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-99
+
+SNR:-2
+
+Pressure:58641hPa
+
+Temperature:19degC
+
+GPS lat/long: 52.7870, -2.9513
+
+Total Count:11
+
+Thresholded Count:10
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-99,-2,0,0,E5,11,93,0,B,0,A,0,0,6C,DE,0,0,73,49,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-99
+
+SNR:-5
+
+Pressure:58478hPa
+
+Temperature:19degC
+
+GPS lat/long: 52.7876, -2.9506
+
+Total Count:7
+
+Thresholded Count:7
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-99,-5,0,0,E4,6E,93,0,7,0,7,0,0,6C,E4,0,0,73,42,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+CRC FAIL!!!
+
+RSSI:-97
+
+SNR:-13
+
+Pressure:58478hPa
+
+Temperature:19degC
+
+GPS lat/long: 52.7876, -2.9506
+
+Total Count:7
+
+Thresholded Count:7
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-97,-13,0,0,E4,6E,93,0,7,0,7,0,0,6C,E4,0,0,73,42,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+CRC FAIL!!!
+
+RSSI:-99
+
+SNR:-13
+
+Pressure:58478hPa
+
+Temperature:19degC
+
+GPS lat/long: 52.7876, -2.9506
+
+Total Count:7
+
+Thresholded Count:7
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-99,-13,0,0,E4,6E,93,0,7,0,7,0,0,6C,E4,0,0,73,42,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+CRC FAIL!!!
+
+RSSI:-98
+
+SNR:-15
+
+Pressure:58478hPa
+
+Temperature:19degC
+
+GPS lat/long: 52.7876, -2.9506
+
+Total Count:7
+
+Thresholded Count:7
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-98,-15,0,0,E4,6E,93,0,7,0,7,0,0,6C,E4,0,0,73,42,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+CRC FAIL!!!
+
+RSSI:-99
+
+SNR:-17
+
+Pressure:58478hPa
+
+Temperature:19degC
+
+GPS lat/long: 52.7876, -2.9506
+
+Total Count:7
+
+Thresholded Count:7
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-99,-17,0,0,E4,6E,93,0,7,0,7,0,0,6C,E4,0,0,73,42,F,A0,1,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,E0,13,0,9D,3,10,10,0,1,0,4,4,4C,22,1,9D,0,0,1,0,21,0,0,0,C,3,0,A0,0,0,0,0,0,0,0,0,0,0,0,0,E0,5,0,A0,3,10,10,0,1,0,4,4,50,22,1,9D,0,0,10,0,3,10,10,0,1,0,4,4,4C,22,1,9D,40,BB,0,9D,0,0,0,0,0,0,0,0,40,0,0,0,0,0,10,0,90,20,1
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-100
+
+SNR:-9
+
+Pressure:57219hPa
+
+Temperature:18degC
+
+GPS lat/long: 52.7909, -2.9451
+
+Total Count:21
+
+Thresholded Count:19
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-100,-9,0,0,DF,83,92,0,15,0,13,0,0,6D,5,0,0,73,B,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+CRC FAIL!!!
+
+RSSI:-98
+
+SNR:-15
+
+Pressure:57219hPa
+
+Temperature:18degC
+
+GPS lat/long: 52.7909, -2.9451
+
+Total Count:21
+
+Thresholded Count:19
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-98,-15,0,0,DF,83,92,0,15,0,13,0,0,6D,5,0,0,73,B,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-100
+
+SNR:-4
+
+Pressure:56433hPa
+
+Temperature:18degC
+
+GPS lat/long: 52.7933, -2.9411
+
+Total Count:20
+
+Thresholded Count:16
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-100,-4,0,0,DC,71,92,0,14,0,10,0,0,6D,1D,0,0,72,E3,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-99
+
+SNR:0
+
+Pressure:56317hPa
+
+Temperature:18degC
+
+GPS lat/long: 52.7938, -2.9399
+
+Total Count:15
+
+Thresholded Count:11
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-99,0,0,0,DB,FD,92,0,F,0,B,0,0,6D,22,0,0,72,D7,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-99
+
+SNR:-14
+
+Pressure:56153hPa
+
+Temperature:18degC
+
+GPS lat/long: 52.7944, -2.9390
+
+Total Count:7
+
+Thresholded Count:5
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-99,-14,0,0,DB,59,92,0,7,0,5,0,0,6D,28,0,0,72,CE,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-100
+
+SNR:0
+
+Pressure:55958hPa
+
+Temperature:18degC
+
+GPS lat/long: 52.7950, -2.9378
+
+Total Count:14
+
+Thresholded Count:12
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-100,0,0,0,DA,96,92,0,E,0,C,0,0,6D,2E,0,0,72,C2,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-99
+
+SNR:1
+
+Pressure:55715hPa
+
+Temperature:18degC
+
+GPS lat/long: 52.7957, -2.9370
+
+Total Count:12
+
+Thresholded Count:12
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-99,1,0,0,D9,A3,92,0,C,0,C,0,0,6D,35,0,0,72,BA,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-97
+
+SNR:-12
+
+Pressure:55488hPa
+
+Temperature:18degC
+
+GPS lat/long: 52.7964, -2.9361
+
+Total Count:12
+
+Thresholded Count:12
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-97,-12,0,0,D8,C0,92,0,C,0,C,0,0,6D,3C,0,0,72,B1,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-101
+
+SNR:0
+
+Pressure:55292hPa
+
+Temperature:18degC
+
+GPS lat/long: 52.7969, -2.9350
+
+Total Count:14
+
+Thresholded Count:12
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-101,0,0,0,D7,FC,92,0,E,0,C,0,0,6D,41,0,0,72,A6,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-100
+
+SNR:-1
+
+Pressure:55144hPa
+
+Temperature:18degC
+
+GPS lat/long: 52.7975, -2.9341
+
+Total Count:10
+
+Thresholded Count:9
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-100,-1,0,0,D7,68,92,0,A,0,9,0,0,6D,47,0,0,72,9D,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-99
+
+SNR:-2
+
+Pressure:54953hPa
+
+Temperature:18degC
+
+GPS lat/long: 52.7981, -2.9329
+
+Total Count:15
+
+Thresholded Count:14
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-99,-2,0,0,D6,A9,92,0,F,0,E,0,0,6D,4D,0,0,72,91,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+interrupt
+
+Ending
+
+RSSI:-98
+
+SNR:-13
+
+Pressure:54813hPa
+
+Temperature:18degC
+
+GPS lat/long: 52.7987, -2.9322
+
+Total Count:11
+
+Thresholded Count:9
+
+Status: SD OK, HDOP OK, SAT OK, GPS OK
+
+#-98,-13,0,0,D6,1D,92,0,B,0,9,0,0,6D,53,0,0,72,8A,F
+
+=============================
+
+
+
+
+
+All done!
+
+Starting
+
+^CTraceback (most recent call last):
+  File "simple.py", line 64, in <module>
+    time.sleep(0.1)
+KeyboardInterrupt
+Williams-MacBook-Pro:console william$ python simple.py

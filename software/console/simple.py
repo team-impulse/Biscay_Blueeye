@@ -1,7 +1,8 @@
 # This Python file uses the following encoding: utf-8
 import serial,sys,time,os
 
-const_default_serial_port = "/dev/tty.usbserial-A6009CSG"
+#const_default_serial_port = "/dev/tty.usbserial-A6009CSG"
+const_default_serial_port = "/dev/tty.usbserial-A6009B8C"
 #const_default_serial_port = "/dev/tty.Bluetooth-Incoming-Port"
 const_default_serial_baud = 38400
 const_data_bad_time = 3.0
@@ -60,6 +61,7 @@ logfile_names = [nameLogFile("GND_RAW_"),nameLogFile("GND_PROCESSSED_")]
 #output required: rssi(dec),snr(dec),pressure x4 (hex),temp x1(hex),count[0]x2 (hex),count[1]x2(hex),positionx8 (hex),status (hex)
 pktcount = 0
 while True:
+    time.sleep(0.1)
     rec = check_serial()
     if rec!="":#if we've got something
         processdata(rec)

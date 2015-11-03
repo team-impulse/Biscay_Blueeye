@@ -2,8 +2,8 @@
 import serial,sys,time,os
 
 #const_default_serial_port = "/dev/tty.usbserial-A6009CSG"
-#const_default_serial_port = "/dev/tty.usbserial-A6009CSG"
-const_default_serial_port = "/dev/tty.usbserial-A6009B8C"
+const_default_serial_port = "/dev/tty.usbserial-A6009CSG"
+#const_default_serial_port = "/dev/tty.usbserial-A6009B8C"
 const_default_serial_baud = 38400
 const_data_bad_time = 3.0
 const_serial_timeout = 0.01
